@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 
 {% macro func_name(func) %}
-{% set n = len(func) %}
-{% for i in range(n) %}
+{% for i in range(count_f) %}
     {% if i == n_var %}
         <span >{{list_f[i]}}</span>
     {% endif %}
