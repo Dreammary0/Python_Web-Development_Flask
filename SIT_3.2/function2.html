@@ -3,85 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title> Таблица и график функции </title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<style>
-    select {
-  width: 100px;
-  padding:5px;
-  border-radius:7px;
-        text-align: center;
-}
-    input{
-          width: autho;
-  padding:5px;
-  border-radius:7px;
-        text-align: center;
-    }
-
-    .scroll-table-body {
-	height: 450px;
-        overflow-x:hidden;  /*для вертикального*/
-
-	overflow-y: auto;
-	margin-top: 0px;
-}
-
-/* Стили для скролла */
-::-webkit-scrollbar {
-	width: 6px;
-}
-::-webkit-scrollbar-track {
-	box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-}
-::-webkit-scrollbar-thumb {
-	box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-}
-
-    .container{
-        display: flex;
-      flex-direction: row;
-        flex-wrap: wrap;
-
-    }
-
-    .button{
-    border-radius: 10px;
-    color: #039;
-    transition: .2s linear;
-    background: #aabcfe;
-}
-
-    .button:hover {
-        color: white;
-   box-shadow: #039 0 0px 0px 40px inset;
-}
-
- table {
-                     border: 1px solid #69c;
-                 }
-
-                 th {
-                     font-size: 18px;
-                     font-weight: normal;
-                     background: #b9c9fe;
-                     border-top: 4px solid #aabcfe;
-                     border-bottom: 1px solid white;
-                     color: #039;
-                     padding: 8px;
-                 }
-
-                 td {
-                     color: #669;
-                     padding: 7px 17px;
-                 }
-
-                 tr:hover td {
-                     background: #ccddff;
-                 }
-
-</style>
-
 
 <form>
     <p>Функция:
@@ -1009,21 +933,6 @@
 </p>
 </div>
 
-<script>
-    const button = document.getElementById('1');
-    const graph = document.getElementById('2');
-    const inlineStyles = graph.style
-
-    button.addEventListener('click', updateButton);
-    function updateButton() {
-        if (button.value === 'Построить') {
-            button.value = 'Скрыть';
-            graph.setAttribute('style', 'opacity:1;')
-        } else {
-            button.value = 'Построить';
-            graph.setAttribute('style', 'opacity:0;')
-        }
-    }
-</script>
 </body>
+<script src="script.js"></script>
 </html>
