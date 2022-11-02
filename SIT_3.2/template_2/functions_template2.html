@@ -1,4 +1,14 @@
 <!DOCTYPE html>
+
+{% macro func_name(func) %}
+{% set n = len(func) %}
+{% for i in range(n) %}
+    {% if i == n_var %}
+        <span >{{list_f[i]}}</span>
+    {% endif %}
+{% endfor %}
+{% endmacro %}
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -11,8 +21,6 @@
     <p>Функция:
         <select name=func>
             {% for i in range(count_f) %}
-            <!-- если номер варианта совпадает со значением i, устанавливаем
-            атрибут selected, атрибут value для каждой строки будет совпадать с i -->
             {% if n_var == i %}
             <option selected value={{i}}> {{list_f[i]}}</option>
             {% else %}
@@ -39,7 +47,9 @@
              <table  border="1px"  width="200" >
                 <tr>
                 <th>x</th>
-                <th>f(x)</th>
+                <th>
+                    {{ func_name(list_f) }}
+                </th>
                 </tr>
                 <tbody>
                 {% for i in range(len(x)) %}
