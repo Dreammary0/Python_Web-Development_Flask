@@ -1,0 +1,41 @@
+﻿
+{% macro render_list(list) %}
+ <ul>
+  {% set n = len(list) %}
+
+  {% for i in range(n) %}
+   {% if i == n - 1 %}
+    <li>{{list[i]}}.</li>
+   {% else %}
+    <li>{{list[i]}},</li>
+   {% endif %}
+  {% endfor %}
+ </ul>
+{% endmacro %}
+
+<html>
+ <head>
+ <title> Пример JINJA2 </title>
+ </head>
+<body>
+ <p>
+ Привет,
+{% if user[3] == "ж" %}
+ студентка
+{% else %}
+ студент
+{% endif %}
+  <span style="color:green"> {{add_spaces(user[0])}}!</span>
+ </p>
+ <p>
+ Ваша образовательная программа <span style="font-weight:bold"> {{user[1]}}.</span>
+ </p>
+ <p>
+  {% set n = len(user[2]) %}
+  Вы изучаете {{n}} {{sclonenie(n)}}
+  {{render_list(user[2])}}
+
+
+ </p>
+ </body>
+</html>
