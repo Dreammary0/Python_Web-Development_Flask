@@ -1,0 +1,223 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Таблица и график функции </title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<form>
+    <p>Функция:
+        <select name=func>
+            
+            <!-- если номер варианта совпадает со значением i, устанавливаем
+            атрибут selected, атрибут value для каждой строки будет совпадать с i -->
+            
+            <option selected value=0> f(x)</option>
+            
+            
+            <!-- если номер варианта совпадает со значением i, устанавливаем
+            атрибут selected, атрибут value для каждой строки будет совпадать с i -->
+            
+            <option value=1> y(x)</option>
+            
+            
+            <!-- если номер варианта совпадает со значением i, устанавливаем
+            атрибут selected, атрибут value для каждой строки будет совпадать с i -->
+            
+            <option value=2> z(x)</option>
+            
+            
+        </select></p>
+    <p>Начало интервала: <input type=text name=beg_i value=-2 size=1></p>
+    <p>Конец интервала: <input type=text name=end_i value=6 size=1></p>
+    <p>Количество значений: <input type=text name=count_p value=30 size=1></p>
+    <p>График: <input id="1" class="button"  type=button value="Построить"></p>
+</form>
+
+<span id="2" style="opacity: 0">
+    <p>
+                
+                    
+                    <span style="font-weight:bold; font-family: cursive;">f(x)=x^3 - 6x^2 + x + 5</span>
+                    
+                
+                    
+                
+                    
+                
+    </p>
+    <div class="container" >
+         <div class = "scroll-table-body">
+             <table  border="1px"  width="200" >
+                <tr>
+                <th>x</th>
+                <th>f(x)</th>
+                </tr>
+                <tbody>
+                
+                <tr>
+                    <td>-2.0</td>
+                    <td>-29.0</td>
+                </tr>
+                
+                <tr>
+                    <td>-1.724</td>
+                    <td>-19.69</td>
+                </tr>
+                
+                <tr>
+                    <td>-1.448</td>
+                    <td>-12.07</td>
+                </tr>
+                
+                <tr>
+                    <td>-1.172</td>
+                    <td>-6.03</td>
+                </tr>
+                
+                <tr>
+                    <td>-0.897</td>
+                    <td>-1.44</td>
+                </tr>
+                
+                <tr>
+                    <td>-0.621</td>
+                    <td>1.83</td>
+                </tr>
+                
+                <tr>
+                    <td>-0.345</td>
+                    <td>3.9</td>
+                </tr>
+                
+                <tr>
+                    <td>-0.069</td>
+                    <td>4.9</td>
+                </tr>
+                
+                <tr>
+                    <td>0.207</td>
+                    <td>4.96</td>
+                </tr>
+                
+                <tr>
+                    <td>0.483</td>
+                    <td>4.2</td>
+                </tr>
+                
+                <tr>
+                    <td>0.759</td>
+                    <td>2.74</td>
+                </tr>
+                
+                <tr>
+                    <td>1.034</td>
+                    <td>0.72</td>
+                </tr>
+                
+                <tr>
+                    <td>1.31</td>
+                    <td>-1.74</td>
+                </tr>
+                
+                <tr>
+                    <td>1.586</td>
+                    <td>-4.52</td>
+                </tr>
+                
+                <tr>
+                    <td>1.862</td>
+                    <td>-7.49</td>
+                </tr>
+                
+                <tr>
+                    <td>2.138</td>
+                    <td>-10.51</td>
+                </tr>
+                
+                <tr>
+                    <td>2.414</td>
+                    <td>-13.48</td>
+                </tr>
+                
+                <tr>
+                    <td>2.69</td>
+                    <td>-16.26</td>
+                </tr>
+                
+                <tr>
+                    <td>2.966</td>
+                    <td>-18.72</td>
+                </tr>
+                
+                <tr>
+                    <td>3.241</td>
+                    <td>-20.74</td>
+                </tr>
+                
+                <tr>
+                    <td>3.517</td>
+                    <td>-22.2</td>
+                </tr>
+                
+                <tr>
+                    <td>3.793</td>
+                    <td>-22.96</td>
+                </tr>
+                
+                <tr>
+                    <td>4.069</td>
+                    <td>-22.9</td>
+                </tr>
+                
+                <tr>
+                    <td>4.345</td>
+                    <td>-21.9</td>
+                </tr>
+                
+                <tr>
+                    <td>4.621</td>
+                    <td>-19.83</td>
+                </tr>
+                
+                <tr>
+                    <td>4.897</td>
+                    <td>-16.56</td>
+                </tr>
+                
+                <tr>
+                    <td>5.172</td>
+                    <td>-11.97</td>
+                </tr>
+                
+                <tr>
+                    <td>5.448</td>
+                    <td>-5.93</td>
+                </tr>
+                
+                <tr>
+                    <td>5.724</td>
+                    <td>1.69</td>
+                </tr>
+                
+                <tr>
+                    <td>6.0</td>
+                    <td>11.0</td>
+                </tr>
+                
+                </tbody>
+             </table>
+         </div>
+        <div><img src="pict.jpg" alt="график">
+        </div>
+
+    </div>
+</span>
+</p>
+</div>
+
+</body>
+<script src="script.js"></script>
+</html>
