@@ -6,6 +6,18 @@
 </head>
 <body>
 <style>
+    select {
+  width: 100px;
+  padding:5px;
+  border-radius:7px;
+        text-align: center;
+}
+    input{
+          width: autho;
+  padding:5px;
+  border-radius:7px;
+        text-align: center;
+    }
 
     .scroll-table-body {
 	height: 450px;
@@ -26,13 +38,48 @@
 	box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
 }
 
-
     .container{
         display: flex;
       flex-direction: row;
         flex-wrap: wrap;
 
     }
+
+    .button{
+    border-radius: 10px;
+    color: #039;
+    transition: .2s linear;
+    background: #aabcfe;
+}
+
+    .button:hover {
+        color: white;
+   box-shadow: #039 0 0px 0px 40px inset;
+}
+
+ table {
+                     border: 1px solid #69c;
+                 }
+
+                 th {
+                     font-size: 18px;
+                     font-weight: normal;
+                     background: #b9c9fe;
+                     border-top: 4px solid #aabcfe;
+                     border-bottom: 1px solid white;
+                     color: #039;
+                     padding: 8px;
+                 }
+
+                 td {
+                     color: #669;
+                     padding: 7px 17px;
+                 }
+
+                 tr:hover td {
+                     background: #ccddff;
+                 }
+
 </style>
 
 
@@ -62,14 +109,14 @@
     <p>Начало интервала: <input type=text name=beg_i value=-2 size=1></p>
     <p>Конец интервала: <input type=text name=end_i value=6 size=1></p>
     <p>Количество значений: <input type=text name=count_p value=173 size=1></p>
-    <p>График: <input id="1" type=button value="Построить"></p>
+    <p>График: <input id="1" class="button"  type=button value="Построить"></p>
 </form>
 
 <span id="2" style="opacity: 0">
     <p>
                 
                     
-                    <span style="font-weight:bold">f(x)=x^3 - 6x^2 + x + 5</span>
+                    <span style="font-weight:bold; font-family: cursive;">f(x)=x^3 - 6x^2 + x + 5</span>
                     
                 
                     
@@ -77,10 +124,9 @@
                     
                 
     </p>
-    <div class="container" style = "flex-direction: row;
-        flex-wrap: wrap;">
+    <div class="container" >
          <div class = "scroll-table-body">
-             <table   bordercolor="black" width="200" rules="all">
+             <table  border="1px"  width="200" >
                 <tr>
                 <th>x</th>
                 <th>f(x)</th>
@@ -959,12 +1005,9 @@
         </div>
 
     </div>
-
-
 </span>
 </p>
 </div>
-
 
 <script>
     const button = document.getElementById('1');
