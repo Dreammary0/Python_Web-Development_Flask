@@ -68,12 +68,12 @@ def Zadanie2():
     f_list = list()
     a = -2
     b = 6
-    n = 30
-    h =round(((b-a)/n),1)
+    n = 173
+    h =((b-a)/(n-1))
     x = a
-    while x <= b:
-        x_list.append(round(x,1))
-        f_list.append(round(f_x(x,n_var),2))
+    while (x-h) < b:
+        x_list.append(x)
+        f_list.append(f_x(x,n_var))
         x += h
 
     count_f = len(list_name_f)
@@ -87,15 +87,14 @@ def Zadanie2():
     template = Template(html)
     # Указать, что в шаблоне будет использована функция len
     template.globals["len"] = len
+    template.globals["round"] = round
     # Cоздадать файл для HTML-страницы
     f = open('function2.html', 'w', encoding='utf-8-sig')
     # Сгенерировать страницу на основе шаблона
 
     name_pict = create_pict(x_list, f_list)
-
-
     result_html = template.render(list_f=list_name_f, count_f= count_f, x=x_list,
-                                  y=f_list, len=len, pict=name_pict,a=a,b=b,n=n,
+                                  y=f_list, pict=name_pict,a=a,b=b,n=n,
                                   name_f=list_name_f_long, n_var=n_var)
     # Вывести сгенерированную страницу в файл
     f.write(result_html)
