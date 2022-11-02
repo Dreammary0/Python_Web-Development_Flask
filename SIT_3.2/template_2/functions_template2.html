@@ -15,13 +15,15 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
 <form>
     <p>Функция:
         <select name=func>
             {% for i in range(count_f) %}
             {% if n_var == i %}
             <option selected value={{i}}> {{list_f[i]}}</option>
+            <script type="text/javascript">
+            var a = "{{i}}";
+            </script>
             {% else %}
             <option value={{i}}> {{list_f[i]}}</option>
             {% endif %}
@@ -34,16 +36,14 @@
 </form>
 
 <span id="2" style="opacity: 0">
-    <p>
-                {% for i in range(count_f) %}
-                    {% if i == n_var %}
-                    <span style="font-weight:bold; font-family: cursive;">{{name_f[i]}}</span>
-                    {% endif %}
-                {% endfor %}
+
+    <div class="container_1" id="test">
+    </div>
+
     </p>
     <div class="container" >
          <div class = "scroll-table-body">
-             <table  border="1px"  width="200" >
+             <table width="200" >
                 <tr>
                 <th>x</th>
                 <th>

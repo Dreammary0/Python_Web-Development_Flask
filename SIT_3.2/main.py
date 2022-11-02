@@ -1,6 +1,9 @@
 from jinja2 import Template
 import matplotlib.pyplot as plt
 import numpy as np
+import warnings
+
+warnings.filterwarnings("ignore")
 
 def create_pict(x, y, way):
  #Построить линию графика, установить для нее цвет и толщину:
@@ -64,9 +67,10 @@ def f_x(x, n_var):
         y = 1 / (x ** 2 + 1)
     return (y)
 def Zadanie2():
-    n_var = 2
+    n_var = 1
     list_name_f = ["f(x)", "y(x)", "z(x)"]
     list_name_f_long=["f(x)=x^3 - 6x^2 + x + 5", "y(x) = x^2 - 5x + 1 ", "z(x) = 1 / (x^2 + 1)"]
+
     x_list = list()
     f_list = list()
     a = -2
@@ -74,6 +78,7 @@ def Zadanie2():
     n = 30
     h =((b-a)/(n-1))
     x = a
+
 
     for i in np.arange(x, b+h, h) :
         x_list.append(i)
