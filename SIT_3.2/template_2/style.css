@@ -50,7 +50,7 @@
 
  table {border: 1px solid #69c;}
                  th {
-                     font-size: 18px;
+                     font-size: 20px;
                      font-weight: normal;
                      background: #b9c9fe;
                      border-top: 4px solid #aabcfe;
@@ -60,6 +60,7 @@
                  }
 
                  td {
+                    font-size: 17px;
                      color: #669;
                      padding: 7px 17px;
                  }

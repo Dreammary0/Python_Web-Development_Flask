@@ -106,7 +106,7 @@ def Zadanie2():
 
     result_html = template.render(list_f=list_name_f, count_f= count_f, x=x_list,
                                   y=f_list, pict=name_pict,a=a,b=b,n=n,
-                                  name_f=list_name_f_long, n_var=n_var)
+                                  name_f=list_name_f_long, n_var=n_var,len=len)
     # Вывести сгенерированную страницу в файл
     f.write(result_html)
     f.close()
