@@ -1,12 +1,12 @@
 {% macro render_table(table_name, relation) %}
  <p >
- <b>{{table_name}} </b>
+ <b style="margin-left: 320px; font-size: large">{{table_name}} </b>
  </p>
  {% set n = len(relation) %}
  <table>
  <tr>
  {% for name in relation.dtypes.index %}
- <th>{{name}}</th>
+ <th >{{name}}</th>
  {% endfor %}
  </tr>
  <tbody>
