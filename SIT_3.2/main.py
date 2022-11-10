@@ -2,9 +2,26 @@ from jinja2 import Template
 import matplotlib.pyplot as plt
 import numpy as np
 import warnings
+import sympy as sp
+import matplotlib.pyplot as plt
 
 warnings.filterwarnings("ignore")
+X = sp.symbols("x")
 
+#картинка с названием функции
+def create_pict1(y, pict_name, test):
+    params = {'text.usetex': False, 'mathtext.fontset': 'cm'}
+    plt.rcParams.update(params)
+    lat = sp.latex(y)
+    fig = plt.figure(figsize=(3.5, 0.5))
+    # можно еще шрифт для вывода левой части f(x) и другие параметры...
+    fig.text(0, 0.3,  test + '= $%s$' % lat, fontsize=15)
+    pic=fig.savefig('template_2/'+ pict_name + '.png', bbox_inches='tight')
+    plt.close()
+    return pic
+
+
+#картинка с графиком функции
 def create_pict(x, y, way):
  #Построить линию графика, установить для нее цвет и толщину:
  line = plt.plot(x, y)
@@ -20,9 +37,19 @@ def create_pict(x, y, way):
  # Вернуть имя созданного файла
  return pic
 
+#заполнение таблицы значений функции
 def func(x):
     a=x*3 - 6*(x*x) + x + 5
     return(a)
+def f_x(x, n_var):
+    if n_var == 0:
+        y = x ** 3 - 6 * x ** 2 + x + 5
+    elif n_var == 1:
+        y = x ** 2 -5 * x +1
+    elif n_var == 2:
+        y = 1 / (x ** 2 + 1)
+    return (y)
+
 def Zadanie1():
     x_list = list()
     f_list = list()
@@ -58,19 +85,9 @@ def Zadanie1():
     f.close()
 #Zadanie1()
 
-def f_x(x, n_var):
-    if n_var == 0:
-        y = x ** 3 - 6 * x ** 2 + x + 5
-    elif n_var == 1:
-        y = x ** 2 -5 * x +1
-    elif n_var == 2:
-        y = 1 / (x ** 2 + 1)
-    return (y)
 def Zadanie2():
-    n_var = 2
+    n_var = 1
     list_name_f = ["f(x)", "y(x)", "z(x)"]
-    list_name_f_long=["f(x)=x^3 - 6x^2 + x + 5", "y(x) = x^2 - 5x + 1 ", "z(x) = 1 / (x^2 + 1)"]
-
     x_list = list()
     f_list = list()
     a = -2
@@ -103,11 +120,12 @@ def Zadanie2():
 
     way="template_2/pict.jpg"
     name_pict = create_pict(x_list, f_list,way)
+    create_pict1(f_x(X,n_var),"test", list_name_f[n_var] )
 
     result_html = template.render(list_f=list_name_f, count_f= count_f, x=x_list,
-                                  y=f_list, pict=name_pict,a=a,b=b,n=n,
-                                  name_f=list_name_f_long, n_var=n_var,len=len)
+                                  y=f_list, pict=name_pict,a=a,b=b,n=n, n_var=n_var,len=len)
     # Вывести сгенерированную страницу в файл
     f.write(result_html)
     f.close()
 Zadanie2()
+

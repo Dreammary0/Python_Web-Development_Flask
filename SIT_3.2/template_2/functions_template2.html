@@ -1,13 +1,5 @@
 <!DOCTYPE html>
 
-{% macro func_name(func) %}
-{% for i in range(count_f) %}
-    {% if i == n_var %}
-        <span >{{list_f[i]}}</span>
-    {% endif %}
-{% endfor %}
-{% endmacro %}
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -21,9 +13,6 @@
             {% for i in range(count_f) %}
             {% if n_var == i %}
             <option selected value={{i}}> {{list_f[i]}}</option>
-            <script type="text/javascript">
-            var a = "{{i}}";
-            </script>
             {% else %}
             <option value={{i}}> {{list_f[i]}}</option>
             {% endif %}
@@ -37,8 +26,9 @@
 
 <span id="2" style="opacity: 0">
 
-    <div class="container_1" id="test">
-    </div>
+    <div><img src="test.png" alt="график">
+        </div>
+
 
     </p>
     <div class="container" >
@@ -47,7 +37,7 @@
                 <tr>
                 <th>x</th>
                 <th>
-                    {{ func_name(list_f) }}
+                    {{ list_f[n_var] }}
                 </th>
                 </tr>
                 <tbody>
@@ -72,7 +62,6 @@
                       <td colspan="2" style="font-size: 24px;" > . . . </td>
                 </tr>
                     </font>
-
 
                 <tr>
                 <td> {{round(x[len(x)-2],3)}} </td>
