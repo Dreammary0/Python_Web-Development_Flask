@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+{% import "macros.html" as macros %}
+
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title> База данных "Библиотека" </title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container" >
+ <div> {{macros.render_table(table_1, relation_1)}} </div>
+ <div> {{macros.render_table(table_3, relation_3)}} </div>
+ <div> {{macros.render_table(table_5, relation_5)}} </div>
+ <div> {{macros.render_table(table_6, relation_6)}} </div>
+ <div> {{macros.render_table(table_7, relation_7)}} </div>
+ <div> {{macros.render_table(table_2, relation_2)}} </div>
+ <div> {{macros.render_table(table_4, relation_4)}} </div>
+
+
+
+</div>
+</body>
+</html>
