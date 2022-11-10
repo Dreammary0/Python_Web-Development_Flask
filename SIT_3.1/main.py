@@ -15,10 +15,6 @@ def sclonenie(n):
 
 
 
-
-
-
-
 f_template = open('templates/ind_test_template.html','r', encoding ='utf-8-sig')
 html = f_template.read()
 f_template.close()
@@ -33,8 +29,11 @@ student =[
  ]
 
 
-
 template = Template(html)
+env = Environment(loader=FileSystemLoader('.'))
+template = env.get_template('templates/ind_test_template.html')
+template.globals['len'] = len
+
 result_html = template.render(user = student[1], add_spaces = add_spaces, len= len, sclonenie = sclonenie)
 
 

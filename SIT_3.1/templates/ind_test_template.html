@@ -1,18 +1,4 @@
-﻿
-{% macro render_list(list) %}
- <ul>
-  {% set n = len(list) %}
-
-  {% for i in range(n) %}
-   {% if i == n - 1 %}
-    <li>{{list[i]}}.</li>
-   {% else %}
-    <li>{{list[i]}},</li>
-   {% endif %}
-  {% endfor %}
- </ul>
-{% endmacro %}
-
+﻿{% import "templates/macros.html" as macros %}
 <html>
  <head>
  <title> Пример JINJA2 </title>
@@ -33,8 +19,7 @@
  <p>
   {% set n = len(user[2]) %}
   Вы изучаете {{n}} {{sclonenie(n)}}
-  {{render_list(user[2])}}
-
+  {{macros.render_list(user[2])}}
 
  </p>
  </body>
