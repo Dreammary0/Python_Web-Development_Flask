@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% import "macros.html" as macros %}
+<head>
+    <meta charset="UTF-8">
+    <title>Поиск книги</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+<div class="container">
+  <div >
+  <form style=" border: 5px inset #91b44a;  padding:10px;background: rgba(145,180,74,0.4); border-radius: 10px;">
+   {{macros.render_spisok("Автор", author)}}
+   {{macros.render_spisok("Жанр", genre)}}
+   {{macros.render_spisok("Издательство", publisher)}}
+      <p>
+      <input type="submit" class="knopka" value="Найти">
+      <input type="submit" class="knopka" value="Очистить">
+      </p>
+  </form>
+  </div>
+  <div>
+      <b>Жанры: </b>
+            {% for i in range(len(genre_list)) %}
+            {{genre_list[i]}},
+            {%endfor%}
+      <b>Издательства: </b>
+           {% for i in range(len(publisher_list)) %}
+           {{publisher_list[i]}},
+           {%endfor%}
+            <p>
+     <div class="grid">
+    {{macros.grid_spisok(book_info)}}
+    </div>
+  </div>
+
+
+</div>
+</body>
+</html>
