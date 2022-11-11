@@ -3,9 +3,10 @@ import sqlite3
 from poisk_book_model import *
 
 #типо пользователь натыкал
-genre_list=("Фантастика","Приключения")
-author_list=("")
-publisher_list=("ПИТЕР","ДРОФА")
+genre_list=("Детектив", "Роман","Приключения")
+author_list=("Агата Кристи", "Жюль Верн", "Ильф И.А.,Петров Е.П.")
+publisher_list=()
+
 
 
 conn = sqlite3.connect("library.sqlite")
@@ -26,7 +27,7 @@ template = Template(html)
 env = Environment(loader=FileSystemLoader('.'))
 template = env.get_template('poisk_book_templ.html')
 template.globals['len'] = len
-template.globals['len'] = print
+template.globals['print'] = print
 
 
 

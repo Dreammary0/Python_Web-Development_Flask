@@ -32,15 +32,17 @@ def get_book_info(conn, g,a,p):
  author_list = a
  publisher_list = p
  df = pd.read_sql(f"""
- SELECT * from book_info
- where  book_info.Жанр in {genre_list}  or book_info.Издательство in {publisher_list}
- """, conn)
+ select * from book_info
+ where Жанр in {genre_list} and Авторы in {author_list}
+  
+  """, conn)
  return df
+
 
 def create_info():
  df = pd.to_sql("""
  create view if not exists book_info as
-                     SELECT b.title as Название, group_concat(a.author_name) as Авторы,
+                     SELECT b.title as Название, group_concat(a.author_name)  as Авторы,
                      g.genre_name as Жанр,   p.publisher_name as Издательство, 
                      b.year_publication as ГодИздательства, b.available_numbers as Количество
                      FROM book_author
