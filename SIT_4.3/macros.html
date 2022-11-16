@@ -1,17 +1,16 @@
 {% macro render_spisok(title, relation) %}
 
 <details>
-    <p>
-       <summary>{{title}}</summary>
+        <summary><b>{{title}}</b></summary>
         {% set n = len(relation) %}
         {% for i in range(n) %}
-        <input type="checkbox" name="option1" value={{i}}} >{{ relation.iloc[i,0] }} ({{ relation.iloc[i,1] }})<Br>
+        <label><input type="checkbox" id="{{title}}.{{i}}" />{{ relation.iloc[i,0] }} ({{ relation.iloc[i,1] }})</label>
+        <Br>
         {% endfor %}
-    </p>
-
 </details>
 
 {% endmacro %}
+
 
 
 {%  macro grid_spisok(relation) %}
