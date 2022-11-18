@@ -20,15 +20,8 @@
   </form>
   </div>
   <div>
-      <b>Жанры: </b>
-            {% for i in range(len(genre_list)) %}
-            {{genre_list[i]}},
-            {%endfor%}
-      <b>Авторы: </b>
-           {% for i in range(len(author_list)) %}
-           {{author_list[i]}},
-           {%endfor%}
-            <p>
+     {{macros.filter_view(genre_list,author_list,publisher_list)}}
+      <p>
      <div class="grid">
     {{macros.grid_spisok(book_info)}}
     </div>

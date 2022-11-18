@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 def get_genre(conn):
  return pd.read_sql("""
- SELECT genre_name,count(b.book_id) as counting
+ SELECT genre.genre_id ,genre_name,count(b.book_id) as counting
  FROM genre 
  join book b on genre.genre_id = b.genre_id 
  group by genre_name
@@ -11,7 +11,7 @@ def get_genre(conn):
 
 def get_author(conn):
  return pd.read_sql("""
- SELECT a.author_name,count(ba.book_id) as counting
+ SELECT ba.author_id,  a.author_name,count(ba.book_id) as counting
  FROM book_author ba
  join author a on ba.author_id = a.author_id
  group by ba.author_id
@@ -20,23 +20,30 @@ def get_author(conn):
 
 def get_publisher(conn):
  return pd.read_sql("""
- SELECT publisher_name, count(b.book_id) 
+ SELECT publisher.publisher_id ,publisher_name, count(b.book_id) 
  FROM publisher 
  join book b on publisher.publisher_id = b.publisher_id
  group by publisher_name
  order by publisher_name
  """, conn)
 
-def get_book_info(conn, g,a,p):
- genre_list = g
- author_list = a
- publisher_list = p
- df = pd.read_sql(f"""
- select * from book_info
- where Жанр in {genre_list} and Авторы in {author_list}
-  
-  """, conn)
- return df
+def get_book_info(conn, g, a, p):
+  genre_list = g
+  author_list = a
+  publisher_list = p
+  df = pd.read_sql("""select * from book_info;""", conn)
+  if genre_list:
+    df = df[df.Жанр.isin(genre_list)]
+
+  if author_list:
+    df = df[df.Авторы.isin(author_list)]
+
+  if publisher_list:
+    df = df[df.Издательство.isin(publisher_list)]
+
+  df = df.reset_index(drop=True)
+  return df
+
 
 
 def create_info():

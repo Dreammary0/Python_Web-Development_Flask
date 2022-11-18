@@ -4,7 +4,7 @@
         <summary><b>{{title}}</b></summary>
         {% set n = len(relation) %}
         {% for i in range(n) %}
-        <label><input type="checkbox" id="{{title}}.{{i}}" />{{ relation.iloc[i,0] }} ({{ relation.iloc[i,1] }})</label>
+        <label><input type="checkbox" value="{{relation.iloc[i,0] }}" id="{{title}}.{{i}}" />{{ relation.iloc[i,1] }} ({{ relation.iloc[i,2] }})</label>
         <Br>
         {% endfor %}
 </details>
@@ -26,5 +26,28 @@
     </div>
 
 {% endfor %}
+{% endmacro %}
+
+
+{% macro filter_view(genre_list,author_list,publisher_list) %}
+
+{% if len(genre_list)!=0 %}
+          <b>Жанры: </b>
+                {% for i in range(len(genre_list)) %}
+                {{genre_list[i]}},
+                {%endfor%}
+      {%endif%}
+      {% if len(author_list)!=0 %}
+          <b>Авторы: </b>
+               {% for i in range(len(author_list)) %}
+               {{author_list[i]}},
+               {%endfor%}
+      {%endif%}
+      {% if len(publisher_list)!=0%}
+           <b>Издательства: </b>
+               {% for i in range(len(publisher_list)) %}
+               {{publisher_list[i]}},
+               {%endfor%}
+      {%endif%}
 
 {% endmacro %}

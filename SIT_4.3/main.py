@@ -5,7 +5,7 @@ from poisk_book_model import *
 #типо пользователь натыкал
 genre_list=("Детектив", "Роман","Приключения")
 author_list=("Агата Кристи", "Жюль Верн", "Ильф И.А.,Петров Е.П.")
-publisher_list=()
+publisher_list=("ДРОФА",)
 
 
 
