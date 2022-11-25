@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title> Приветствие </title>
+</head>
+<body>
+<p>
+    Привет,
+    {% if gender == "m" %}
+    студент
+    {% elif gender == "w" %}
+    студентка
+    {% endif %}
+    {{name}}!
+</p>
+<p>
+    Вы изучаете дисциплины:
+    {% for sub in subjects_select %}
+    {{sub}},
+    {% endfor %}
+</p>
+</body>
