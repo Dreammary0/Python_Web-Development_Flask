@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title> Приветствие </title>
+    <link rel="stylesheet" href="../static/style.css">
+
 </head>
 <body>
     {% if len(name) == 0 %}
-        У тебя нет имени?!
+        У Вас нет имени?
     {% else %}
         <p>
             Привет,
@@ -43,10 +45,10 @@
                 <li><a href={{ url_for('olympiads', oly=oly) }}>{{oly}}</a>.</li>
                 {% endfor %}
             {% else %}
-                Вы отдыхали дома.
+                Вы не участвовали в олимпиадах, а отдыхали дома.
             {% endif %}
         </p>
     {%endif%}
-<p><input name=action onclick="history.back()"
+<p><input  name=action onclick="history.back()"
           type=submit value="Вернуться"/></p>
 </body>
