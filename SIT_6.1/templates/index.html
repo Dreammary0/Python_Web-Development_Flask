@@ -11,7 +11,7 @@
     <p>Пол:<br>
         <input type=radio name=gender value=w> Ж <br>
         <input type=radio name=gender value=m> M
-        6
+
     </p>
     Образовательная программа:
     <select name=program>
@@ -19,7 +19,6 @@
         <option value={{i}}>{{program_list[i]}}</option>
         {% endfor %}
     </select>
-    </p>
     <p>
         Выберите дисциплины, которые Вы изучаете:<br>
         {% for i in range(len(subject_list)) %}
@@ -27,7 +26,17 @@
         {{subject_list[i]}}<br>
         {% endfor %}
     </p>
-    <p><input type=submit value=Отправить></p>
+    <p>
+        Отметьте олимпиады и конкурсы, в которых Вы участвовали:<br>
+        {% for i in range(len(olympiads_list)) %}
+        <input type=checkbox name=olympiads[] value={{i}}>
+        {{olympiads_list[i]}}<br>
+        {% endfor %}
+    </p>
+    <p><input type=submit value=Отправить>
+        <input type="reset" value="Очистить форму">
+    </p>
+
 </form>
 </body>
 </html>

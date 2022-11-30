@@ -10,6 +10,7 @@ def index():
         'index.html',
         program_list=constants.programs,
         subject_list=constants.subjects,
+        olympiads_list = constants.olympiads,
         len=len
     )
     return html
