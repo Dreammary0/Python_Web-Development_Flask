@@ -7,38 +7,61 @@
 
 </head>
 <body>
-
-<form action="{{ url_for('hello') }}" method="get">
-    <p>Имя: <input type=text name=username></p>
+<form action="{{ url_for('index') }}" method="get">
+    <p>Имя: <input type=text name=username value={{name}}></p>
     <p>Пол:<br>
+        {% if gender=='w' %}
+        <input type=radio name=gender value=w checked> Ж <br>
+        {% else %}
         <input type=radio name=gender value=w> Ж <br>
+        {% endif %}
+        {% if gender=='m' %}
+        <input type=radio name=gender value=m checked> M
+        {% else %}
         <input type=radio name=gender value=m> M
-
+        {% endif %}
+    </p>
     </p>
     Образовательная программа:
     <select name=program>
         {% for i in range(len(program_list)) %}
+        {% if program==program_list[i] %}
+        <option value={{i}} selected>{{program_list[i]}}</option>
+        {% else %}
         <option value={{i}}>{{program_list[i]}}</option>
+        {% endif %}
         {% endfor %}
     </select>
+    </p>
     <p>
         Выберите дисциплины, которые Вы изучаете:<br>
         {% for i in range(len(subject_list)) %}
+        {% if subject_list[i] in subjects_select %}
+        <input type=checkbox name=subject[] value={{i}} checked>
+        {{subject_list[i]}}<br>
+        {% else %}
         <input type=checkbox name=subject[] value={{i}}>
         {{subject_list[i]}}<br>
+        {% endif %}
         {% endfor %}
     </p>
     <p>
         Отметьте олимпиады и конкурсы, в которых Вы участвовали:<br>
-        {% for i in range(len(olympiads_list)) %}
-        <input type=checkbox name=olympiads[] value={{i}}>
-        {{olympiads_list[i]}}<br>
+        {% for i in range(len(olympiad_list)) %}
+        {% if olympiad_list[i] in olympiads_select %}
+        <input type=checkbox name=olympiad[] value={{i}} checked>
+        {{olympiad_list[i]}}<br>
+        {% else %}
+        <input type=checkbox name=olympiad[] value={{i}}>
+        {{olympiad_list[i]}}<br>
+        {% endif %}
         {% endfor %}
     </p>
-    <p><input type=submit value=Отправить>
-        <input type="reset" value="Очистить форму">
-    </p>
-
+    <p><input type=submit class="button" value=Отправить>
+</form>
+<form action="/" style="margin-top: -45px; margin-left: 110px;">
+    <input type="submit" class="button" value=Очистить>
+    <p>
 </form>
 </body>
 </html>

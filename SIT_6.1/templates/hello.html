@@ -7,48 +7,51 @@
 
 </head>
 <body>
-    {% if len(name) == 0 %}
-        У Вас нет имени?
-    {% else %}
-        <p>
-            Привет,
-            {% if gender == "m" %}
-            студент
-            {% elif gender == "w" %}
-            студентка
-            {% endif %}
-            <b>{{name}}</b>!
-        </p>
-        <p>
-            Ваша образовательная программа: <i>{{program}}</i>.
-        </p>
-        <p>
-        {% if len(subjects_select) > 0 %}
-                Вы изучаете дисциплины:
-                {% for sub in subjects_select[:-1] %}
-                <li><a href={{ url_for('subject', sub=sub) }}>{{sub}}</a>,</li>
-                {% endfor %}
-                {% for sub in subjects_select[-1:] %}
-                <li><a href={{ url_for('subject', sub=sub) }}>{{sub}}</a>.</li>
-                {% endfor %}
+    {% if test == 1 %}
+    <p style="opacity:0">Текст</p>
+    {%else%}
+        {% if name == '' %}
+            Введите Имя
         {% else %}
-                Вы не изучаете никаких дисциплин.
-        {% endif %}
-        </p>
-        <p>
-             {% if len(olympiads_select)>0 %}
-                Вы участвовали:
-                {% for oly in olympiads_select[:-1] %}
-                <li><a href={{ url_for('olympiads', oly=oly) }}>{{oly}}</a>,</li>
-                {% endfor %}
-                {% for oly in olympiads_select[-1:] %}
-                <li><a href={{ url_for('olympiads', oly=oly) }}>{{oly}}</a>.</li>
-                {% endfor %}
+            <p>
+                Привет,
+                {% if gender == "m" %}
+                студент
+                {% elif gender == "w" %}
+                студентка
+                {% endif %}
+                <b>{{name}}</b>!
+            </p>
+            <p>
+                Ваша образовательная программа: <i>{{program}}</i>.
+            </p>
+            <p>
+            {% if len(subjects_select) > 0 %}
+                    Вы изучаете дисциплины:
+                    {% for sub in subjects_select[:-1] %}
+                    <li><a href={{ url_for('subject', sub=sub) }}>{{sub}}</a>,</li>
+                    {% endfor %}
+                    {% for sub in subjects_select[-1:] %}
+                    <li><a href={{ url_for('subject', sub=sub) }}>{{sub}}</a>.</li>
+                    {% endfor %}
             {% else %}
-                Вы не участвовали в олимпиадах, а отдыхали дома.
+                    Вы не изучаете никаких дисциплин.
             {% endif %}
-        </p>
-    {%endif%}
-<p><input  name=action onclick="history.back()"
-          type=submit value="Вернуться"/></p>
+            </p>
+            <p>
+                 {% if len(olympiads_select)>0 %}
+                    Вы участвовали:
+                    {% for oly in olympiads_select[:-1] %}
+                    <li><a href={{ url_for('olympiads', oly=oly) }}>{{oly}}</a>,</li>
+                    {% endfor %}
+                    {% for oly in olympiads_select[-1:] %}
+                    <li><a href={{ url_for('olympiads', oly=oly) }}>{{oly}}</a>.</li>
+                    {% endfor %}
+                {% else %}
+                    Вы не участвовали в олимпиадах, а отдыхали дома.
+                {% endif %}
+            </p>
+        {%endif%}
+{%endif%}
+
 </body>
