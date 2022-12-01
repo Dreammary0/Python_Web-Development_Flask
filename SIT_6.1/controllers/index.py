@@ -17,9 +17,6 @@ def index():
     subjects_select = [constants.subjects[int(i)] for i in subject_id]
     olympiads_select = [constants.olympiads[int(i)] for i in olympiad_id]
 
-    if not request.values.getlist('olympiad[]'): test=1
-    else: test=0
-
     # Условия
     if not name:
         name = ''
@@ -53,7 +50,6 @@ def index():
         gender=gender,
         program=program,
         subjects_select=subjects_select,
-        olympiads_select=olympiads_select,
-        test=test
+        olympiads_select=olympiads_select
     )
     return html
