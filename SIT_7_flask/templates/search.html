@@ -40,8 +40,13 @@
                 {% for name in relation.dtypes.index[1:] %}
                     <b>{{ name }}: </b>{{ relation.loc[i][name] }}<br>
                 {% endfor %}
+
+
+
                 <form method="get">
-                    <button type="submit" name={{ relation_name }} class="grid_knopka"
+                    <button  {% if relation.loc[i, 'Количество'] == 0 %}
+                           disabled
+                            {% endif %} type="submit" name={{ relation_name }} class="grid_knopka"
                             value="{{ relation.loc[i]['book_id'] }}"
                             style="float: right;">
                         Выбрать
@@ -61,7 +66,7 @@
     <ul>
         <li><a href={{ url_for("index") }}>Читатель</a></li>
         <li class=active><a href={{ url_for("search") }}>Книги</a></li>
-        {#{<li><a href= url_for("statistics") >Статистика</a></li>}#}
+        <li><a href= {{ url_for("statistics") }} >Статистика</a></li>
     </ul>
 </div>
 <div class="container">
