@@ -1,6 +1,6 @@
 import models.search_model as model
 from app import app
-from flask import render_template, request, session
+from flask import render_template, request, session,redirect
 from utils import get_db_connection
 
 
@@ -10,6 +10,10 @@ def search():
     if request.values.get('book'):
         book_id = request.values.get('book')
         model.borrow_book(conn, book_id, session['reader_id'])
+        print(str(session['reader_id']))
+        return redirect('/?reader=' + str(session['reader_id']))
+        flash(hi)
+
     if request.values.get('genre'):
         genre_list = request.values.getlist('genre')
     else:

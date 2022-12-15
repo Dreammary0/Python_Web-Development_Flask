@@ -5,12 +5,12 @@ from models.index_model import get_reader, get_book_reader, get_new_reader ,borr
 @app.route('/', methods=['get'])
 def index():
      conn = get_db_connection()
-     # нажата кнопка Найти
+     # Найти читателя
      if request.values.get('reader'):
          reader_id = int(request.values.get('reader'))
          session['reader_id'] = reader_id
 
-     # если нажать Сдать книгу
+     # Сдать книгу
      elif request.values.get('return'):
          reader_book_id = int(request.values.get('return'))
          print(reader_book_id)
@@ -20,19 +20,19 @@ def index():
      elif request.values.get('submitNewReader'):
          html = render_template('new_reader.html')
          return html
-    # если введено ФИО нового читателя
+
+    # Сессия для нового читателя
      elif request.values.get('newReaderFio'):
          r_id = get_new_reader(conn, request.values.get('newReaderFio'))
          print(r_id)
          session['reader_id'] = int(r_id)
+
      # нажата кнопка Добавить со страницы Новый читатель
-     #(взять в комментарии, пока не реализована страница Новый читатель)
      elif request.values.get('new_reader'):
          new_reader = request.values.get('new_reader')
          session['reader_id'] = get_new_reader(conn, new_reader)
 
      # нажата кнопка Взять со страницы Поиск
-     #(взять в комментарии, пока не реализована страница Поиск)
      elif request.values.get('book'):
          book_id = int(request.values.get('book'))
          borrow_book(conn, book_id, session['reader_id'])
