@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>3</title>
+    <link rel="stylesheet" type="text/css" href="/static/CSS/style.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/CSS/style_books.css"/>
+
+{#__________________________________________________________________________________________________________    #}
+
+{% macro grid_list(name,proceduere_name, relation, iniq_date) %}
+<h3>Запись к мастеру <b>{{name}}</b> ({{ proceduere_name}})</h3>
+
+<div class="master_windows" >
+    {%  for date in iniq_date %}
+        <h4 style="text-align: center; font-size: 15px">{{ date }}</h4>
+        <div class="grid">
+        {% set n = len(relation) %}
+        {% for i in range(n) %}
+            {% if relation.loc[i, 'Дата'] == date  %}
+                <div class="{{ i }}">
+                {% for name in relation.dtypes.index %}
+                {% if name=='Запись' %}
+                    {% if relation.loc[i, 'Запись'] == 0 %}
+
+                        <input name ='record_button' value={{relation.loc[i, 'IDOrder']}} type="checkbox" id={{relation.loc[i, 'IDOrder']}}>
+                        <label class="button_1" for={{relation.loc[i, 'IDOrder']}}>{{relation.loc[i, 'Время']}}:00</label>
+
+                    {% else %}
+                        <input  disabled name ='record_button' value={{relation.loc[i, 'IDOrder']}} type="checkbox" id={{relation.loc[i, 'IDOrder']}}>
+                        <label class="button_1" for={{relation.loc[i, 'IDOrder']}}>{{relation.loc[i, 'Время']}}:00</label>
+                    {% endif %}
+                {% endif %}
+                {% endfor %}
+                </div>
+            {% endif %}
+        {% endfor %}
+        </div>
+        <br>
+    {% endfor %}
+</div>
+
+{% endmacro %}
+
+
+{#______________________________________________________________________________________________________________    #}
+</head>
+<body>
+
+<div class=menu>
+    <ul>
+        <li><a href={{ url_for("index") }}>Выбрать услугу</a></li>
+        <li >Выбрать мастера</li>
+        <li class=active>Выбрать время</li>
+    </ul>
+</div>
+
+{#Выодим рассписание мастеров#}
+    <form action='' method="get">
+    {% for i in range(0,len(master_records_list)) %}
+        {{ grid_list(master_records_list[i].loc[1, 'MasterName'],master_records_list[i].loc[1, 'ProcedureName'],master_records_list[i], uniq_date_list[i] ) }}
+    {% endfor %}
+    <input type="submit" class="button_1" value="Показать" >
+    </form>
+
+
+</body>
+</html>
