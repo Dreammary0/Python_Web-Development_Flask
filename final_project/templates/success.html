@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Запись в салон</title>
+    <link rel="stylesheet" type="text/css" href="/static/CSS/style.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/CSS/style_1.css"/>
+    <link href="static/icon.png" rel="icon" type="image/x-icon">
+
+</head>
+<body>
+<div class=menu>
+    <ul>
+        <li><a href={{ url_for("index") }}>Выбрать услугу</a></li>
+        <li><a> Выбрать мастера</a></li>
+        <li><a>Выбрать время</a></li>
+        <li><a>Проверьте данные </a></li>
+        <li class="active"><a> Выход </a></li>
+
+    </ul>
+</div>
+<form style="font-family: serif;font-size: 14pt;"  method="get">
+{% if name and phone %}
+    {{name}}!
+    <br>
+    Вы записаны, ждем вас в нашем салоне.
+    <br>
+    <input type="submit" class="button_1" name="exit" value="Завершить"  >
+
+{% else %}
+Вы не заполнили контактные данные!
+{% endif %}
+</form>
+</body>
+</html>

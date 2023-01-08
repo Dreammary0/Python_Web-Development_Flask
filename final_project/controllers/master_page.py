@@ -1,93 +1,68 @@
 import pandas as pd
 from app import app
-from flask import render_template, request, session
+from flask import render_template, request, session,Flask, redirect, url_for, flash, make_response
+
 from utils import get_db_connection
-from models.index_model import Service, Record
-@app.route('/masters', methods=['get'])
-def masters():
+from models.index_model import Service, Masters_for_procedure,Master_records
+@app.route('/masterpage', methods=['get'])
+def masterpage():
+
+     session['services']=['-']
      conn = get_db_connection()
-     df_Service = Service(conn)
-     add_procedure_list = []
+     add_procedure_list=[]
      if request.values.get('barber'):
           barber_list = request.values.getlist('barber')
           add_procedure_list.append('Парикмахер')
-          for elem in barber_list:
-               if elem not in list(session['service']):
-                    session['service'].append(elem)
-
-
+          session['services'].append(barber_list)
      else:
           barber_list = []
+
 
      if request.values.get('nail'):
           nail_list = request.values.getlist('nail')
           add_procedure_list.append('Маникюр')
-          for elem in nail_list:
-               if elem not in list(session['service']):
-                    session['service'].append(elem)
-
-
+          session['services'].append(nail_list)
      else:
           nail_list = []
 
      if request.values.get('makeup'):
           makeup_list = request.values.getlist('makeup')
           add_procedure_list.append('Визажист')
-          for elem in makeup_list:
-               if elem not in list(session['service']):
-                    session['service'].append(elem)
-
-
+          session['services'].append(makeup_list)
      else:
           makeup_list = []
+
 
      if request.values.get('shugaring'):
           shugaring_list = request.values.getlist('shugaring')
           add_procedure_list.append('Шугаринг')
-          for elem in shugaring_list:
-               if elem not in list(session['service']):
-                    session['service'].append(elem)
-
+          session['services'].append(shugaring_list)
      else:
           shugaring_list = []
 
      if request.values.get('cosmetolog'):
           cosmetolog_list = request.values.getlist('cosmetolog')
           add_procedure_list.append('Косметолог')
-          for elem in cosmetolog_list:
-               if elem not in list(session['service']):
-                    session['service'].append(elem)
-
+          session['services'].append(cosmetolog_list)
      else:
           cosmetolog_list = []
 
      if add_procedure_list:
-          df_Record = Record(conn, add_procedure_list)
-          session['procedures'] = add_procedure_list
+        df_Masters_for_procedure = Masters_for_procedure(conn, add_procedure_list)
+        session['procedures']=add_procedure_list
+        print(session['procedures'])
+        print( session['services'])
      else:
-          df_Record = pd.DataFrame
+          df_Masters_for_procedure = pd.DataFrame
 
-     if request.values.get('masters'):
-          masters_list = request.values.getlist('masters')
-     else:
-          masters_list = []
-     print(session['procedures'])
-     print(makeup_list,nail_list)
+
      html = render_template(
-          'index_3.html',
+          'master_page.html',
           len=len,
-          masters=df_Record,
-          masters_list=masters_list,
-          add_procedure_list=list(session['procedures'])
+          masters=df_Masters_for_procedure,
+          add_procedure_list=list(session['procedures']),
+          add_service_list = list(session['services']),
      )
 
-     # if masters_list:
-     #      print(len(list(session['service'])))
-     #      html = render_template(
-     #           'index_3.html'
-     #           # len=len,
-     #           # masters=df_Record,
-     #           # masters_list=masters_list,
-     #           # add_procedure_list=list(session['procedures'])
-     #      )
+
      return html

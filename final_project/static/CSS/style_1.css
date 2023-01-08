@@ -1,3 +1,4 @@
+
 select {
     width: 150px;
     padding: 5px;
@@ -25,10 +26,8 @@ label:hover {
     font-family: serif;
     font-size: 16pt; /* Размер шрифта в пунктах */
     letter-spacing: 1px;
-    weight: 600px;
-
-
 }
+
 
 .container {
     display: flex;
@@ -43,6 +42,8 @@ label:hover {
 }
 
 .button_1 {
+    padding: 5px;
+    border-radius: 4px;
     font-size: 12pt;
     border-radius: 9px;
     text-align: center;

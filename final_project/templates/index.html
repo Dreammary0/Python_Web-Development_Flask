@@ -2,39 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Запись</title>
+    <title>Запись в салон</title>
     <link rel="stylesheet" type="text/css" href="/static/CSS/style.css"/>
-    <link rel="stylesheet" type="text/css" href="/static/CSS/style_books.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/CSS/style_1.css"/>
+    <link href="static/icon.png" rel="icon" type="image/x-icon">
 
+    {#______________________________________________________________#}
+    {% macro render_list(title, name, relation) %}
 
-
-{#______________________________________________________________#}
-    {% macro render_list(title, name, relation, selected) %}
-
-        <details >
-            <summary ><b>{{ title }}</b></summary>
+        <details>
+            <summary><b>{{ title }}</b></summary>
             {% set n = len(relation) %}
             {% for i in range(n) %}
-                {% if relation.iloc[i][3] == title%}
-                    {% if relation.iloc[i][1] in selected %}
-                        <input checked type="checkbox" name={{ name }} value='{{ relation.iloc[i][1] }}' id=
-                                {{ name }}{{ i }}>
-                        <label for={{ name }}{{ i }} class="details_label">{{ relation.iloc[i][1] }}
-                            ({{ relation.iloc[i][2] }} ₽)</label>
-                        <br>
-                    {% else %}
-                        <input type="checkbox" name={{ name }} value='{{ relation.iloc[i][1] }}' id=
-                                {{ name }}{{ i }}>
-                        <label for={{ name }}{{ i }} >{{ relation.iloc[i][1] }}
-                            ({{ relation.iloc[i][2] }}₽)</label>
-                        <br>
-                    {% endif %}
+                {% if relation.iloc[i][3] == title %}
+                    <input type="checkbox" name={{ name }} value='{{ relation.iloc[i][1] }}' id=
+                            {{ name }}{{ i }}>
+                    <label for={{ name }}{{ i }}>{{ relation.iloc[i][1] }}
+                        ({{ relation.iloc[i][2] }}₽)</label>
+                    <br>
                 {% endif %}
             {% endfor %}
         </details>
 
     {% endmacro %}
-{#________________________________________________________________________________#}
+    {#________________________________________________________________________________#}
 </head>
 <body>
 <div class=menu>
@@ -43,17 +34,16 @@
     </ul>
 </div>
 <div class="container">
-<div class="form">
+    <div class="form" style=" width: 430px; ">
+        <form id="main" method="get">
+            {{ render_list('Парикмахер', 'barber' , service) }}
+            {{ render_list('Маникюр', 'nail' , service) }}
+            {{ render_list('Шугаринг', 'shugaring' , service) }}
+            {{ render_list('Визажист', 'makeup' , service) }}
+            {{ render_list('Косметолог', 'cosmetolog' , service) }}
 
-    <form>
-    {{ render_list('Парикмахер', 'barber' , service, barber_list)}}
-    {{ render_list('Маникюр', 'nail' , service, nail_list)}}
-    {{ render_list('Шугаринг', 'shugaring' , service, shugaring_list)}}
-    {{ render_list('Визажист', 'makeup' , service, makeup_list)}}
-    {{ render_list('Косметолог', 'cosmetolog' , service, cosmetolog_list)}}
-
-     <input type="submit" class="button_1" value="Выбрать мастера">
-     <input type="submit" name="data_choise" class="button_1" value="Выбрать дату">
+            <button formaction="masterpage" class="button_1">Выбрать мастера</button>
+            <button formaction="datepage" class="button_1">Выбрать дату</button>
         </form>
 
     </div>

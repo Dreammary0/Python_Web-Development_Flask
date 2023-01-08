@@ -20,11 +20,11 @@
     padding: 10px 20px;
 }
 
-.menu li:hover {
-    background-color:  rgba(145, 180, 74, 0.87);
-    cursor: pointer;
-    color: #f8f8f8;
-}
+/*.menu li:hover {*/
+/*    background-color:  rgba(145, 180, 74, 0.87);*/
+/*    cursor: pointer;*/
+/*    color: #f8f8f8;*/
+/*}*/
 
 .menu ul {
     padding: 0px;
@@ -39,9 +39,9 @@
     color: #f8f8f8;
 }
 
-.menu a:hover {
-    color: #f8f8f8;
-}
+/*.menu a:hover {*/
+/*    color: #f8f8f8;*/
+/*}*/
 
 .block {
     padding: 10px 20px;
@@ -66,9 +66,3 @@ td {
 tr:hover td {
   background: rgba(145, 180, 74, 0.87);
 }
-
-.knopka:hover {
-    background: rgba(163, 205, 90, 0.14);
-}
-.knopka:active {
-    background: rgba(163, 205, 90);}

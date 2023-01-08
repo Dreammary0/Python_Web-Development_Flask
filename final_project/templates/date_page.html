@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Запись в салон</title>
+    <link rel="stylesheet" type="text/css" href="/static/CSS/style.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/CSS/style_1.css"/>
+    <link href="static/icon.png" rel="icon" type="image/x-icon">
+
+
+{#__________________________________________________________________________________________________________    #}
+
+{% macro grid_list(name, proceduere_name, relation, iniq_date) %}
+<h3>Запись к мастеру <b>{{name}}</b> ({{ proceduere_name}})</h3>
+<div class="master_windows" >
+    {%  for date in iniq_date %}
+        <h4 style="text-align: center; font-size: 15px">{{ date }}</h4>
+        <div class="grid">
+        {% set n = len(relation) %}
+        {% for i in range(n) %}
+            {% if relation.loc[i, 'Дата'] == date  %}
+                <div class="{{ i }}">
+                {% for name in relation.dtypes.index %}
+                {% if name=='Запись' %}
+                    {% if relation.loc[i, 'Запись'] == 0 %}
+
+                        <input name ='record_button' value={{relation.loc[i, 'IDOrder']}} type="checkbox" id={{relation.loc[i, 'IDOrder']}}>
+                        <label class="button_1" for={{relation.loc[i, 'IDOrder']}}>{{relation.loc[i, 'Время']}}:00</label>
+
+                    {% else %}
+                        <input  disabled name ='record_button' value={{relation.loc[i, 'IDOrder']}} type="checkbox" id={{relation.loc[i, 'IDOrder']}}>
+                        <label class="button_1" for={{relation.loc[i, 'IDOrder']}}>{{relation.loc[i, 'Время']}}:00</label>
+                    {% endif %}
+                {% endif %}
+                {% endfor %}
+                </div>
+            {% endif %}
+        {% endfor %}
+        </div>
+        <br>
+    {% endfor %}
+</div>
+
+{% endmacro %}
+
+
+{#______________________________________________________________________________________________________________    #}
+
+
+</head>
+<body>
+
+<div class=menu>
+    <ul>
+        <li><a href={{ url_for("index") }}>Выбрать услугу</a></li>
+        <li class=active><a>Выбрать время записи</a></li>
+    </ul>
+</div>
+
+
+
+  <form class="form" action="{{ url_for('datepage') }}" method="get">
+            <input type="date" placeholder="С какого" name="dateStart">
+            <input type="date" placeholder="По какое" name="dateEnd">
+            <button type ="submit" name="submitGetDate" value="on" class="button_1">Найти подходящее время</button>
+{#            <input type="submit"name="submitGetDate" value="Найти подходящее время" class="button_1" >#}
+  </form>
+
+   <form action={{ url_for("regpage") }} method="get">
+    {% for i in range(0,len(date_list_list)) %}
+        {{ grid_list(date_list_list[i].loc[1, 'MasterName'],date_list_list[i].loc[1, 'ProcedureName'],date_list_list[i], uniq_date_list[i] ) }}
+    {% endfor %}
+    <input type="submit" class="button_1" value="Подтвердить запись" >
+    </form>
+
+</body>
+</html>
