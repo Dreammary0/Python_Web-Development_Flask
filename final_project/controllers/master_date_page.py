@@ -1,7 +1,6 @@
 import pandas as pd
 from app import app
 from flask import render_template, request, session,Flask, redirect, url_for, flash, make_response
-
 from utils import get_db_connection
 from models.master_model import Master_records
 @app.route('/masterdatepage', methods=['get'])

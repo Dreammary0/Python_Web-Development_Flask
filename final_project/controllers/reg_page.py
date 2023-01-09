@@ -2,7 +2,7 @@ import pandas as pd
 from app import app
 from flask import render_template, request, session,Flask, redirect, url_for, flash, make_response
 from utils import get_db_connection
-from models.index_model import OrderListRegPage, Check_sum, CheckClient, AddNewClient, RecordClient, AddCheck, AddCheck_Order, AddCheck_Procedure
+from models.reg_model import OrderListRegPage, Check_sum, CheckClient, AddNewClient, RecordClient, AddCheck, AddCheck_Order, AddCheck_Procedure
 @app.route('/regpage', methods=['get'])
 
 def regpage():
