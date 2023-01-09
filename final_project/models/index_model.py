@@ -123,8 +123,8 @@ def CheckClient(conn,name,phone):
 
 # Записать клиента
 def RecordClient (con, CLientID, OrderID):
-    Reg_for_proc='''
-    UPDATE OrderList SET Client_IDClient = 1 WHERE IDOrder=1
+    Reg_for_proc=f'''
+    UPDATE OrderList SET Client_IDClient = '{CLientID}' WHERE IDOrder = '{OrderID}'
     '''
     execute_query(con, Reg_for_proc)
 

@@ -2,7 +2,7 @@ import pandas as pd
 from app import app
 from flask import render_template, request, session,Flask, redirect, url_for, flash, make_response
 from utils import get_db_connection
-from models.index_model import OrderListRegPage, Check_sum, CheckClient, AddNewClient, DeleteTestClient
+from models.index_model import OrderListRegPage, Check_sum, CheckClient, AddNewClient, RecordClient
 @app.route('/regpage', methods=['get'])
 def regpage():
 
@@ -30,9 +30,11 @@ def regpage():
 
      if request.values.get('submitSuccess'):
          if (request.values.get('username') and request.values.get('userphone')):
-              test = CheckClient(conn, request.values.get('username'), request.values.get('userphone'))
-              print(test)
-              print('дело сделать')
+              IDClient = CheckClient(conn, request.values.get('username'), request.values.get('userphone'))
+              print(IDClient)
+              for elem in session['order_add']:
+                   RecordClient(conn,IDClient,elem)
+
               print(session['order_add'])
               print(session['services'])
               print(session['procedures'])

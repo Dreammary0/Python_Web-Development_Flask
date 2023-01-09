@@ -20,16 +20,13 @@
     </ul>
 </div>
 <form style="font-family: serif;font-size: 14pt;"  method="get">
-{% if name and phone %}
-    {{name}}!
+    <b>{{name}}!</b>
     <br>
-    Вы записаны, ждем вас в нашем салоне.
+    Спасибо за обращение.
+    <br>
+    Ждем вас по адрессу <b>г.Владивосток, ул. Тихоокенская, 1а </b>- вход со двора.
     <br>
     <input type="submit" class="button_1" name="exit" value="Завершить"  >
-
-{% else %}
-Вы не заполнили контактные данные!
-{% endif %}
 </form>
 </body>
 </html>
