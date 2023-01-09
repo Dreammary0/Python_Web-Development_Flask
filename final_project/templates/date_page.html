@@ -6,6 +6,8 @@
     <link rel="stylesheet" type="text/css" href="/static/CSS/style.css"/>
     <link rel="stylesheet" type="text/css" href="/static/CSS/style_1.css"/>
     <link href="static/icon.png" rel="icon" type="image/x-icon">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
 
 
 {#__________________________________________________________________________________________________________    #}
@@ -43,6 +45,25 @@
 
 {% endmacro %}
 
+<script>$(document).on('ready', function() {
+  var checkboxes = $("input[type=checkbox]");
+  $("#dateform").on('submit', function(e) {
+    var checker = false;
+    checkboxes.each(function() {
+      if ($(this).prop('checked') == true) {
+        checker = true;
+      }
+    });
+
+    if (checker == false) {
+      e.preventDefault();
+      console.log('не выбран ни один чекбокс, форма не отправлена');
+    } else {
+      console.log('выбран хотя бы 1 чекбокс, форма отправлена');
+    }
+  });
+});</script>
+
 
 {#______________________________________________________________________________________________________________    #}
 
@@ -60,13 +81,13 @@
 
 
   <form class="form" action="{{ url_for('datepage') }}" method="get">
-            <input type="date" placeholder="С какого" name="dateStart">
-            <input type="date" placeholder="По какое" name="dateEnd">
+            <input type="date"  required="required" placeholder="С какого" name="dateStart">
+            <input type="date" required="required" placeholder="По какое" name="dateEnd">
             <button type ="submit" name="submitGetDate" value="on" class="button_1">Найти подходящее время</button>
 {#            <input type="submit"name="submitGetDate" value="Найти подходящее время" class="button_1" >#}
   </form>
 
-   <form action={{ url_for("regpage") }} method="get">
+   <form id="dateform" action={{ url_for("regpage") }} method="get">
     {% for i in range(0,len(date_list_list)) %}
         {{ grid_list(date_list_list[i].loc[1, 'MasterName'],date_list_list[i].loc[1, 'ProcedureName'],date_list_list[i], uniq_date_list[i] ) }}
     {% endfor %}

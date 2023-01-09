@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="/static/CSS/style.css"/>
     <link rel="stylesheet" type="text/css" href="/static/CSS/style_1.css"/>
     <link href="static/icon.png" rel="icon" type="image/x-icon">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 {#__________________________________________________________________________________________________________    #}
 
@@ -44,6 +45,25 @@
 {% endmacro %}
 
 
+<script>$(document).on('ready', function() {
+  var checkboxes = $("input[type=checkbox]");
+  $("#form_grid").on('submit', function(e) {
+    var checker = false;
+    checkboxes.each(function() {
+      if ($(this).prop('checked') == true) {
+        checker = true;
+      }
+    });
+
+    if (checker == false) {
+      e.preventDefault();
+      console.log('не выбран ни один чекбокс, форма не отправлена');
+    } else {
+      console.log('выбран хотя бы 1 чекбокс, форма отправлена');
+    }
+  });
+});</script>
+
 {#______________________________________________________________________________________________________________    #}
 </head>
 <body>
@@ -57,7 +77,7 @@
 </div>
 
 {#Выодим рассписание мастеров#}
-    <form action={{ url_for("regpage") }} method="get">
+    <form id ='form_grid' action={{ url_for("regpage") }} method="get">
     {% for i in range(0,len(master_records_list)) %}
         {{ grid_list(master_records_list[i].loc[1, 'MasterName'],master_records_list[i].loc[1, 'ProcedureName'],master_records_list[i], uniq_date_list[i] ) }}
     {% endfor %}

@@ -85,7 +85,7 @@ def OrderListRegPage(con, id_order_list, procedure_name):
         df = df.set_index(indx)
     return df
 
-
+# Сумма чека заказа
 def Check_sum(conn, service_list):
     df = pd.read_sql("""
     SELECT ProcedureListName,ProcedurePrice
@@ -94,17 +94,32 @@ def Check_sum(conn, service_list):
     return df
 
 # Добавить нового клиента
-def AddNewClient(con, name,phone):
-    
-    Add_Client='''
+def AddNewClient(con, name, phone):
+    Add_Client=f"""
     INSERT INTO Client ("IDClient","ClientName","ClientPhone") 
-    VALUES (null, 'Марина','574374')
-    
+    VALUES (null, '{name}','{phone}')
 /*    DELETE FROM Client where IDClient>10;
     UPDATE SQLITE_SEQUENCE SET seq = 1 WHERE name = 'Client';*/
-    '''
+    """
     execute_query(con, Add_Client)
 
+# Проверить, есть ли клиент в базе, если нет - добавить. Вернуть его айди.
+def CheckClient(conn,name,phone):
+    df = pd.read_sql(f"""    
+    select * from Client 
+    where ClientPhone='{phone}' and ClientName='{name}'
+    """,conn)
+    isempty = df.empty
+    if isempty:
+        AddNewClient(conn, name,phone)
+        print('Клиент добавлен')
+    else: print('Клиент уже есть в базе')
+    df1 = pd.read_sql(f"""    
+    select IDClient from Client 
+    where ClientPhone='{phone}' and ClientName='{name}'
+    """,conn)
+    print(pd.read_sql('''select * from Client''',conn))
+    return df1['IDClient']. values [0]
 
 # Записать клиента
 def RecordClient (con, CLientID, OrderID):
@@ -112,7 +127,6 @@ def RecordClient (con, CLientID, OrderID):
     UPDATE OrderList SET Client_IDClient = 1 WHERE IDOrder=1
     '''
     execute_query(con, Reg_for_proc)
-
 
 def Task6(con):
     print("3.2 Вывести доступные варианты записи на процедуру 1 после 18:00 и мастеров")
@@ -124,6 +138,15 @@ def Task6(con):
     join Master M on S.Master_IDMaster=M.IDMaster
     join Procedure P on M.Procedure_IDProcedure=P.IDProcedure
     ''',con)
+
+#Удалить клиентов после тестирования
+def DeleteTestClient(con):
+    D_Client=f"""
+    DELETE FROM Client where IDClient>10;
+    UPDATE SQLITE_SEQUENCE SET seq = 1 WHERE name = 'Client';
+    """
+    execute_query(con, D_Client)
+
 
 
 

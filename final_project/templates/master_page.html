@@ -6,6 +6,8 @@
     <link rel="stylesheet" type="text/css" href="/static/CSS/style.css"/>
     <link rel="stylesheet" type="text/css" href="/static/CSS/style_1.css"/>
     <link href="/static/icon.png" rel="icon" type="image/x-icon">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
 
     {% macro render_list(name, relation, masters) %}
         {% for title in masters %}
@@ -23,11 +25,27 @@
         </details>
     {% endfor %}
     {% endmacro %}
+<script>$(document).on('ready', function() {
+  var checkboxes = $("input[type=checkbox]");
+  $("#form").on('submit', function(e) {
+    var checker = false;
+    checkboxes.each(function() {
+      if ($(this).prop('checked') == true) {
+        checker = true;
+      }
+    });
+
+    if (checker == false) {
+      e.preventDefault();
+      console.log('не выбран ни один чекбокс, форма не отправлена');
+    } else {
+      console.log('выбран хотя бы 1 чекбокс, форма отправлена');
+    }
+  });
+});</script>
+{#-----------------------------------------------------------------------------------------#}
 </head>
-
 <body>
-
-
 <div class=menu>
     <ul>
         <li><a href={{ url_for("index") }}>Выбрать услугу</a></li>
@@ -35,10 +53,9 @@
     </ul>
 </div>
 
-
 {% if add_procedure_list %}
 <div class="container">
-<div class="form">
+<div class="form" id="form">
     <form action={{ url_for("masterdatepage") }} method="get">
     {{ render_list('masters', masters, add_procedure_list)}}
        <input type="submit" class="button_1" value="Показать">

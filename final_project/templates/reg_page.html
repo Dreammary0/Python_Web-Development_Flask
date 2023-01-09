@@ -18,9 +18,12 @@
 
     </ul>
 </div>
+
+
 <form action="{{ url_for('regpage') }}" method="get">
-    Имя: <input type=text name=username value={{name}}>
-    Телефон: <input type=text name=userphone value={{name}}>
+    <h3>Заполните контактные данные:</h3>
+    <input type=text name=username placeholder='Имя' required="required" value={{name}}>
+    <input type="tel" name=userphone  placeholder='Нормер телефона' required="required" value={{name}} >
     <input class="button_1" type="submit" name="submitSuccess" value="Записаться">
 </form>
 

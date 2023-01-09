@@ -6,6 +6,8 @@
     <link rel="stylesheet" type="text/css" href="/static/CSS/style.css"/>
     <link rel="stylesheet" type="text/css" href="/static/CSS/style_1.css"/>
     <link href="static/icon.png" rel="icon" type="image/x-icon">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
 
     {#______________________________________________________________#}
     {% macro render_list(title, name, relation) %}
@@ -25,17 +27,41 @@
         </details>
 
     {% endmacro %}
+
+    <script>$(document).on('ready', function() {
+  var checkboxes = $("input[type=checkbox]");
+  $("#main").on('submit', function(e) {
+    var checker = false;
+    checkboxes.each(function() {
+      if ($(this).prop('checked') == true) {
+        checker = true;
+      }
+    });
+
+    if (checker == false) {
+      e.preventDefault();
+      console.log('не выбран ни один чекбокс, форма не отправлена');
+    } else {
+      console.log('выбран хотя бы 1 чекбокс, форма отправлена');
+    }
+  });
+});</script>
     {#________________________________________________________________________________#}
 </head>
 <body>
+
+
 <div class=menu>
     <ul>
         <li class=active><a href={{ url_for("index") }}>Выбрать услугу</a></li>
     </ul>
 </div>
+
+
+
 <div class="container">
-    <div class="form" style=" width: 430px; ">
-        <form id="main" method="get">
+    <div class="form"  style=" width: 430px; ">
+        <form id="main"  method="get">
             {{ render_list('Парикмахер', 'barber' , service) }}
             {{ render_list('Маникюр', 'nail' , service) }}
             {{ render_list('Шугаринг', 'shugaring' , service) }}

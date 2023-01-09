@@ -2,7 +2,7 @@ import pandas as pd
 from app import app
 from flask import render_template, request, session,Flask, redirect, url_for, flash, make_response
 from utils import get_db_connection
-from models.index_model import OrderListRegPage, Check_sum
+from models.index_model import OrderListRegPage, Check_sum, CheckClient, AddNewClient, DeleteTestClient
 @app.route('/regpage', methods=['get'])
 def regpage():
 
@@ -10,6 +10,7 @@ def regpage():
 
      if request.values.get('record_button'):
           record_button_list=request.values.getlist('record_button')
+          session['order_add']=record_button_list
           df_order_list_list=[]
 
           for proc in session['procedures']:
@@ -29,8 +30,15 @@ def regpage():
 
      if request.values.get('submitSuccess'):
          if (request.values.get('username') and request.values.get('userphone')):
+              test = CheckClient(conn, request.values.get('username'), request.values.get('userphone'))
+              print(test)
               print('дело сделать')
-              print(record_button_list)
+              print(session['order_add'])
+              print(session['services'])
+              print(session['procedures'])
+
+
+
          else: print('дело не сделать')
          html = render_template('success.html', name= request.values.get('username'), phone=request.values.get('userphone'))
          return html
@@ -38,12 +46,11 @@ def regpage():
      elif request.values.get('exit'):
           return redirect('/')
 
-
      html = render_template(
           'reg_page.html',
           procedure_list=session['procedures'],
           service_list = session['services'],
-          record_button_list=record_button_list,
+          record_button_list=session['order_add'],
           len=len,
           order_list = df_order_list_list,
           check_sum=df_check_sum
