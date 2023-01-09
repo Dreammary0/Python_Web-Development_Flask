@@ -9,8 +9,8 @@ import datetime
 
 def index():
      conn = get_db_connection()
-     df_Service=Service(conn)
 
+     df_Service=Service(conn)
      html = render_template(
      'index.html',
      service= df_Service,

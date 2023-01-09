@@ -2,7 +2,7 @@ import pandas as pd
 from app import app
 from flask import render_template, request, session, Flask, redirect, url_for, flash, make_response
 from utils import get_db_connection
-from models.index_model import Find_time_date, Masters_for_procedure
+from models.master_model import Find_time_date, Masters_for_procedure
 
 def convert(date):
     return max(i for i in date.replace('-', '.').split())
