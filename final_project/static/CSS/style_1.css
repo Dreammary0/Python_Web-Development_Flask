@@ -19,6 +19,9 @@ label:hover {
     cursor: pointer;
 }
 
+summary:hover{
+    cursor: pointer;
+}
 .form {
     border: 2px inset #aaec36;
     padding: 10px;
