@@ -77,5 +77,20 @@ input[type="submit"] {
     text-align: center;
     margin-top: 10px;
     cursor: pointer;
+}
 
+input[type="date"] {
+    padding: 4px 4px 4px 4px;
+    border-radius: 5px;
+}
+
+.decor p {
+    padding-left: 40px;
+    padding-bottom: 10px;
+   margin-bottom: 10px;
+   line-height: 40px;
+   border-width: 0;
+   border-radius: 20px;
+   font-family: 'Roboto', sans-serif;
+   line-height: 1.1;
 }

@@ -95,12 +95,18 @@
 
 
    {% if indecator==1 %}
-   <form  id="dateform" style="padding: 1px 0 0 0;margin: 10px 0 0 0;"  class="decor" action={{ url_for("regpage") }} method="get">
-    {% for i in range(0,len(date_list_list)) %}
-        {{ grid_list(date_list_list[i].loc[1, 'MasterName'],date_list_list[i].loc[1, 'ProcedureName'],date_list_list[i], uniq_date_list[i] ) }}
-    {% endfor %}
-    <input type="submit" class="button_1" value="Подтвердить запись" >
-    </form>
+       <form id="dateform" style="padding: 1px 0 0 0;margin: 10px 0 0 0;" class="decor"
+             action={{ url_for("regpage") }} method="get">
+          {% if len(date_list_list)==0 %}
+              <p>К сожалению, на выбранные даты записи нет!</p>
+          {% else %}
+           {% for i in range(0,len(date_list_list)) %}
+               {{ grid_list(date_list_list[i].loc[1, 'MasterName'],date_list_list[i].loc[1, 'ProcedureName'],date_list_list[i], uniq_date_list[i] ) }}
+           {% endfor %}
+           <input type="submit" class="button_1" value="Подтвердить запись">
+                  {% endif %}
+
+       </form>
     {% endif %}
 
 </body>

@@ -61,7 +61,12 @@ def datepage():
         endDate = convert(endDate)
         for elem in master_list:
             date_list_df = get_Find_time_date(conn, startDate, endDate, elem)
-            date_list_list.append(date_list_df)
+            print(date_list_df)
+            isempty = date_list_df.empty
+            print(isempty)
+            if (isempty): print('пусто')
+            else:
+                date_list_list.append(date_list_df)
         indecator=1
 
     if date_list_list:
@@ -70,12 +75,12 @@ def datepage():
             uniq_date_list.append(df_Date_record_uniq_date)
 
 
-
     html = render_template(
         'date_page.html',
         date_list_list=date_list_list,
         int=int,
         uniq_date_list=uniq_date_list,
-        len=len,indecator=indecator
+        len=len,
+        indecator=indecator,
     )
     return html
