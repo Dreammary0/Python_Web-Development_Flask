@@ -46,23 +46,3 @@
 .block {
     padding: 10px 20px;
 }
-
-th {
-  font-size: 13px;
-  font-weight: normal;
-  background:  rgba(163, 205, 90);
-  border-top: rgba(145, 180, 74, 0.7);
-  border-bottom: 1px solid white;
-  color: white;
-  padding: 8px;
-}
-td {
-  background: rgba(145, 180, 74, 0.4);
-  border-bottom: 1px solid white;
-  color: rgb(51, 43, 43);
-  border-top: 1px solid transparent;
-  padding: 8px;
-}
-tr:hover td {
-  background: rgba(145, 180, 74, 0.87);
-}

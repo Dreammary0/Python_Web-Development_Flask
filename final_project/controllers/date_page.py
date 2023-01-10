@@ -53,6 +53,7 @@ def datepage():
     uniq_date_list = []
     master_list = list(df_Masters_for_procedure['MasterName'])
     date_list_df = pd.DataFrame
+    indecator = 0
     if request.values.get('submitGetDate'):
         startDate = request.values.get('dateStart')
         endDate = request.values.get('dateEnd')
@@ -61,6 +62,7 @@ def datepage():
         for elem in master_list:
             date_list_df = get_Find_time_date(conn, startDate, endDate, elem)
             date_list_list.append(date_list_df)
+        indecator=1
 
     if date_list_list:
         for elem in date_list_list:
@@ -68,11 +70,12 @@ def datepage():
             uniq_date_list.append(df_Date_record_uniq_date)
 
 
+
     html = render_template(
         'date_page.html',
         date_list_list=date_list_list,
         int=int,
         uniq_date_list=uniq_date_list,
-        len=len)
-
+        len=len,indecator=indecator
+    )
     return html

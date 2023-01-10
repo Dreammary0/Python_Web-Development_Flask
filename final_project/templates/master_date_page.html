@@ -5,17 +5,22 @@
     <title>Запись в салон</title>
     <link rel="stylesheet" type="text/css" href="/static/CSS/style.css"/>
     <link rel="stylesheet" type="text/css" href="/static/CSS/style_1.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/CSS/test_1.css"/>
+
     <link href="static/icon.png" rel="icon" type="image/x-icon">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 {#__________________________________________________________________________________________________________    #}
 
 {% macro grid_list(name,proceduere_name, relation, iniq_date) %}
-<h3>Запись к мастеру <b>{{name}}</b> ({{ proceduere_name}})</h3>
 
-<div class="master_windows" >
-    {%  for date in iniq_date %}
-        <h4 style="text-align: center; font-size: 15px">{{ date }}</h4>
+    <div class="master_windows">
+        <div class="form-inner">
+            <h4>Запись к мастеру <b>{{ name }}</b> ({{ proceduere_name }})</h4>
+
+            {% for date in iniq_date %}
+                <b><h3 style="text-align: center; font-size: 15px; color: black; font-weight: 500;font-size: 17px; padding:0px 0px 0px 0px;
+">{{ date }}</h3></b>
         <div class="grid">
         {% set n = len(relation) %}
         {% for i in range(n) %}
@@ -40,6 +45,7 @@
         </div>
         <br>
     {% endfor %}
+</div>
 </div>
 
 {% endmacro %}
@@ -76,8 +82,10 @@
     </ul>
 </div>
 
+
 {#Выодим рассписание мастеров#}
-    <form id ='form_grid' action={{ url_for("regpage") }} method="get">
+    <form id ='form_grid' class="decor" action={{ url_for("regpage") }} method="get">
+        <h3>Выберите время записи:</h3>
     {% for i in range(0,len(master_records_list)) %}
         {{ grid_list(master_records_list[i].loc[1, 'MasterName'],master_records_list[i].loc[1, 'ProcedureName'],master_records_list[i], uniq_date_list[i] ) }}
     {% endfor %}

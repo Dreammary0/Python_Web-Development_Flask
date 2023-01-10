@@ -1,0 +1,68 @@
+* {
+   box-sizing: border-box;
+}
+body {
+   background: rgba(212, 239, 192, 0.4);
+   margin:30px;
+   font-size:18px;
+}
+.decor {
+   position: relative;
+   max-width: 600px;
+   background: white;
+   border-radius: 30px;
+}
+
+.form-inner {
+   padding: 50px;
+}
+.form-inner summary,input[type="tel"],input[type="text"] {
+   display: block;
+   width: 100%;
+   padding: 0 20px;
+   margin-bottom: 10px;
+   background: #E9EFF6;
+   line-height: 40px;
+   border-width: 0;
+   border-radius: 20px;
+   font-family: 'Roboto', sans-serif;
+}
+
+
+.form-inner label,input[type="checkbox"] {
+   padding: 0 20px;
+   margin-bottom: 10px;
+   line-height: 40px;
+   border-width: 0;
+   border-radius: 20px;
+   font-family: 'Roboto', sans-serif;
+}
+
+.form-inner p,.form-inner li {
+   margin-bottom: 10px;
+   line-height: 40px;
+   border-width: 0;
+   border-radius: 20px;
+   font-family: 'Roboto', sans-serif;
+   line-height: 1.1;
+}
+
+.form-inner h3 {
+   margin-top: -5px;
+   font-family: 'Roboto', sans-serif;
+   font-weight: 500;
+   font-size: 24px;
+   color: #707981;
+}
+
+input[type="submit"] {
+    /* сверху | справа | снизу | слева */
+    margin: 2em 0 0 0;
+   border-radius: 4px;
+    font-size: 12pt;
+    border-radius: 9px;
+    text-align: center;
+    margin-top: 10px;
+    cursor: pointer;
+
+}

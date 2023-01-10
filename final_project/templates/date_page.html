@@ -5,6 +5,8 @@
     <title>Запись в салон</title>
     <link rel="stylesheet" type="text/css" href="/static/CSS/style.css"/>
     <link rel="stylesheet" type="text/css" href="/static/CSS/style_1.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/CSS/test_1.css"/>
+
     <link href="static/icon.png" rel="icon" type="image/x-icon">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
@@ -13,10 +15,12 @@
 {#__________________________________________________________________________________________________________    #}
 
 {% macro grid_list(name, proceduere_name, relation, iniq_date) %}
-<h3>Запись к мастеру <b>{{name}}</b> ({{ proceduere_name}})</h3>
-<div class="master_windows" >
-    {%  for date in iniq_date %}
-        <h4 style="text-align: center; font-size: 15px">{{ date }}</h4>
+    <div class="form-inner">
+    <div class="master_windows">
+            <h4>Запись к мастеру <b>{{ name }}</b> ({{ proceduere_name }})</h4>
+            {% for date in iniq_date %}
+                <b><h3 style="text-align: center; font-size: 15px; color: black; font-weight: 500;font-size: 17px; padding:0px 0px 0px 0px;
+">{{ date }}</h3></b>
         <div class="grid">
         {% set n = len(relation) %}
         {% for i in range(n) %}
@@ -41,6 +45,7 @@
         </div>
         <br>
     {% endfor %}
+</div>
 </div>
 
 {% endmacro %}
@@ -80,18 +85,23 @@
 
 
 
-  <form class="form" action="{{ url_for('datepage') }}" method="get">
+  <form style="padding-left: 40px; padding-bottom: 30px;" class="decor" action="{{ url_for('datepage') }}" method="get">
+              <h3 style="padding: 45px 0 0 8px;">Выберите интервал:</h3>
             <input type="date"  required="required" placeholder="С какого" name="dateStart">
             <input type="date" required="required" placeholder="По какое" name="dateEnd">
             <button type ="submit" name="submitGetDate" value="on" class="button_1">Найти подходящее время</button>
   </form>
 
-   <form id="dateform" action={{ url_for("regpage") }} method="get">
+
+
+   {% if indecator==1 %}
+   <form  id="dateform" style="padding: 1px 0 0 0;margin: 10px 0 0 0;"  class="decor" action={{ url_for("regpage") }} method="get">
     {% for i in range(0,len(date_list_list)) %}
         {{ grid_list(date_list_list[i].loc[1, 'MasterName'],date_list_list[i].loc[1, 'ProcedureName'],date_list_list[i], uniq_date_list[i] ) }}
     {% endfor %}
     <input type="submit" class="button_1" value="Подтвердить запись" >
     </form>
+    {% endif %}
 
 </body>
 </html>

@@ -77,17 +77,19 @@ summary:hover{
     align-items: center;
 }
 
-.master_windows {
-    border: 2px inset #aaec36;
-    border-radius: 10px;
-    padding-left: 17px;
-    background: rgba(170, 222, 79, 0.24);
-    font-family: serif;
-    font-size: 12pt; /* Размер шрифта в пунктах */
-    width: 480px;
-    height: auto; /* Размеры */
 
-}
+
+/*.master_windows {*/
+/*    border: 2px inset #aaec36;*/
+/*    border-radius: 10px;*/
+/*    padding-left: 17px;*/
+/*    background: rgba(170, 222, 79, 0.24);*/
+/*    font-family: serif;*/
+/*    font-size: 12pt; !* Размер шрифта в пунктах *!*/
+/*    width: 480px;*/
+/*    height: auto; !* Размеры *!*/
+
+/*}*/
 
 
 .master_windows input[type=checkbox] {

@@ -5,6 +5,8 @@
     <title>Запись в салон</title>
     <link rel="stylesheet" type="text/css" href="/static/CSS/style.css"/>
     <link rel="stylesheet" type="text/css" href="/static/CSS/style_1.css"/>
+        <link rel="stylesheet" type="text/css" href="/static/CSS/test.css"/>
+
     <link href="static/icon.png" rel="icon" type="image/x-icon">
 
 </head>
@@ -19,22 +21,21 @@
     </ul>
 </div>
 
-
-<form action="{{ url_for('regpage') }}" method="get">
+<form class="decor">
+    <div class="form-inner">
+    <form action="{{ url_for('regpage') }}" method="get">
     <h3>Заполните контактные данные:</h3>
     <input type=text name=username placeholder='Имя' required="required" value={{name}}>
     <input type="tel" name=userphone  placeholder='Номер телефона' required="required" value={{name}} >
-    <input class="button_1" type="submit" name="submitSuccess" value="Записаться">
-</form>
 
 
+<br>
 <h3>Выбранные услуги:</h3>
-<form class="form" style="font-family: serif;font-size: 14pt; width: 300px; " >
+<form class="dop" >
      {% for i in range(0,len(procedure_list)) %}
-         <b>{{ procedure_list[i] }}</b><br>
-         <u>Имя мастера: </u>{{ order_list[i].loc[0, 'MasterName'] }}
-         <br>
-         <u>Дата записи:</u>
+         <p><b>{{ procedure_list[i] }}</b></p>
+         <p><u>Имя мастера: </u>{{ order_list[i].loc[0, 'MasterName'] }}</p>
+         <p><u>Дата записи:</u>
             {% if len(order_list[i]) == 1%}
                 {{ order_list[i].loc[0, 'OrderData'] }} {{ order_list[i].loc[0, 'OrderTime'] }}:00
                 <br>
@@ -44,8 +45,8 @@
                 {% endfor %}
 
             {% endif %}
-
-            <u>Услуги:</u>
+         </p>
+            <p><u>Услуги:</u>
             {% if len(service_list[i+1]) == 1%}
                 {{ service_list[i+1][0] }}
             {% else %}
@@ -53,12 +54,17 @@
                     <li>{{ service_list[i+1][k] }}</li>
                 {% endfor %}
             {% endif %}
-         <p>
+     ____________________________________
      {% endfor %}
+    </p>
 <p>
     <b>Сумма чека: {{ check_sum }}0 ₽</b>
+</p>
 
 </form>
-
+        <input class="button_1" type="submit" name="submitSuccess" value="Подтвердить запись">
+</form>
+    </div>
+</form>
 </body>
 </html>

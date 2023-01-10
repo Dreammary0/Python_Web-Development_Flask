@@ -5,6 +5,8 @@
     <title>Запись в салон</title>
     <link rel="stylesheet" type="text/css" href="/static/CSS/style.css"/>
     <link rel="stylesheet" type="text/css" href="/static/CSS/style_1.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/CSS/test.css"/>
+
     <link href="static/icon.png" rel="icon" type="image/x-icon">
 
 </head>
@@ -19,14 +21,15 @@
 
     </ul>
 </div>
-<form style="font-family: serif;font-size: 14pt;"  method="get">
-    <b>{{name}}!</b>
-    <br>
-    Спасибо за обращение.
-    <br>
-    Ждем вас по адрессу <b>г.Владивосток, ул. Тихоокенская, 1а </b>- вход со двора.
-    <br>
-    <input type="submit" class="button_1" name="exit" value="Завершить"  >
+
+<form id="main" method="get" class="decor" method="get">
+    <div class="form-inner">
+        <h3><b>{{ name }}!</b></h3>
+        <p>Спасибо за обращение.</p>
+        <p>Ждем вас по адрессу <b>г.Владивосток, ул. Тихоокенская, 1а </b>- вход со двора.</p>
+        <input type="submit" class="button_1" name="exit" value="Завершить">
+    </div>
+
 </form>
 </body>
 </html>
