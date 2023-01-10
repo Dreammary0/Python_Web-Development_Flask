@@ -13,7 +13,7 @@ def execute_query(connection, query):
 
 
 #Вывести мастеров для выбранных процедур
-def Masters_for_procedure(conn, procedures_list):
+def get_Masters_for_procedure(conn, procedures_list):
     df = pd.read_sql("""
     SELECT IDMaster, MasterName , P.ProcedureName
     FROM Master
@@ -25,7 +25,7 @@ def Masters_for_procedure(conn, procedures_list):
 
 
 # Какие окошки есть у мастера
-def Master_records(con,master):
+def get_Master_records(con, master):
     df = pd.read_sql(f'''
     select IDOrder, OrderData as Дата, OrderTime as Время, Client_IDClient as Запись, M.MasterName, P.ProcedureName
     from OrderList
@@ -44,7 +44,7 @@ def Master_records(con,master):
     return df
 
 #Окошки в выбранные даты (с указанным мастером для перебора в цикле контроллера)
-def Find_time_date(con,dateStart, dateEnd, name):
+def get_Find_time_date(con, dateStart, dateEnd, name):
         df=pd.read_sql(f'''
         select IDOrder, OrderData as Дата, OrderTime as Время, Client_IDClient as Запись, M.MasterName, P.ProcedureName, M.IDMaster
         from OrderList

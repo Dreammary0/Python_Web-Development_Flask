@@ -13,7 +13,7 @@ def execute_query(connection, query):
 
 
 #Вывести услуги для процедур
-def Service(con):
+def get_ProcedureList(con):
     return pd.read_sql("""SELECT IDProcedureList, ProcedureListName , ProcedurePrice, P.ProcedureName  
     FROM ProcedureList
     JOIN "Procedure" P on P.IDProcedure = ProcedureList.Procedure_IDProcedure 

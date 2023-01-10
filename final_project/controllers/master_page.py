@@ -2,7 +2,7 @@ import pandas as pd
 from app import app
 from flask import render_template, request, session,Flask, redirect, url_for, flash, make_response
 from utils import get_db_connection
-from models.master_model import Masters_for_procedure
+from models.master_model import get_Masters_for_procedure
 @app.route('/masterpage', methods=['get'])
 def masterpage():
 
@@ -47,7 +47,7 @@ def masterpage():
           cosmetolog_list = []
 
      if add_procedure_list:
-        df_Masters_for_procedure = Masters_for_procedure(conn, add_procedure_list)
+        df_Masters_for_procedure = get_Masters_for_procedure(conn, add_procedure_list)
         session['procedures']=add_procedure_list
         print(session['procedures'])
         print( session['services'])

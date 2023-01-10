@@ -2,7 +2,7 @@ import pandas as pd
 from app import app
 from flask import render_template, request, session,Flask, redirect, url_for, flash, make_response
 from utils import get_db_connection
-from models.reg_model import OrderListRegPage, Check_sum, CheckClient, AddNewClient, RecordClient, AddCheck, AddCheck_Order, AddCheck_Procedure
+from models.reg_model import get_OrderListInfo_for_RegPage, get_check_sum, get_ClientId_for_chek, AddNewClient, RecordClient, AddCheck, AddCheck_Order, AddCheck_Procedure
 @app.route('/regpage', methods=['get'])
 
 def regpage():
@@ -13,7 +13,7 @@ def regpage():
           df_order_list_list=[]
 
           for proc in session['procedures']:
-               df_order_list_list.append(OrderListRegPage(conn, record_button_list, proc))
+               df_order_list_list.append(get_OrderListInfo_for_RegPage(conn, record_button_list, proc))
 
           check_list=[]
           for serv in session['services']:
@@ -21,7 +21,7 @@ def regpage():
                     for elem in serv:
                          check_list.append(elem)
 
-          df_check_sum = Check_sum(conn, check_list)
+          df_check_sum = get_check_sum(conn, check_list)
           session['check_sum']=df_check_sum
           session['service_list']=check_list
 
@@ -32,7 +32,7 @@ def regpage():
      if request.values.get('submitSuccess'):
          if (request.values.get('username') and request.values.get('userphone')):
               # Полуили айди клинта (если клиент новый - добавили в базу)
-              IDClient = CheckClient(conn, request.values.get('username'), request.values.get('userphone'))
+              IDClient = get_ClientId_for_chek(conn, request.values.get('username'), request.values.get('userphone'))
               # Записали его в окошко OrderList
               for elem in session['order_add']:
                    RecordClient(conn,IDClient,elem)

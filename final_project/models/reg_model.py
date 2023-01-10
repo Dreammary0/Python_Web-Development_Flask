@@ -13,7 +13,7 @@ def execute_query(connection, query):
 
 
 #информация по записи при нажатии кнопки времени OrderList
-def OrderListRegPage(con, id_order_list, procedure_name):
+def get_OrderListInfo_for_RegPage(con, id_order_list, procedure_name):
     df = pd.read_sql(f'''SELECT IDOrder, OrderData, OrderTime, M.MasterName, P.ProcedureName
     FROM OrderList
     join Schedule S on OrderList.Schedule_IDSchedule = S.IDSchedule
@@ -31,7 +31,7 @@ def OrderListRegPage(con, id_order_list, procedure_name):
     return df
 
 # Сумма чека заказа
-def Check_sum(conn, service_list):
+def get_check_sum(conn, service_list):
     df = pd.read_sql("""
     SELECT ProcedureListName,ProcedurePrice
     from ProcedureList """, conn)
@@ -47,7 +47,7 @@ def AddNewClient(con, name, phone):
     execute_query(con, Add_Client)
 
 # Проверить, есть ли клиент в базе, если нет - добавить. Вернуть его айди.
-def CheckClient(conn,name,phone):
+def get_ClientId_for_chek(conn, name, phone):
     df = pd.read_sql(f"""    
     select * from Client 
     where ClientPhone='{phone}' and ClientName='{name}'

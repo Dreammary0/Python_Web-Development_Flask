@@ -2,7 +2,7 @@ import pandas as pd
 from app import app
 from flask import render_template, request, session, Flask, redirect, url_for, flash, make_response
 from utils import get_db_connection
-from models.master_model import Find_time_date, Masters_for_procedure
+from models.master_model import get_Find_time_date, get_Masters_for_procedure
 
 def convert(date):
     return max(i for i in date.replace('-', '.').split())
@@ -43,9 +43,9 @@ def datepage():
 
     if add_procedure_list:
         session['procedures'] = add_procedure_list
-        df_Masters_for_procedure = Masters_for_procedure(conn, session['procedures'])
+        df_Masters_for_procedure = get_Masters_for_procedure(conn, session['procedures'])
     elif session['procedures']:
-        df_Masters_for_procedure = Masters_for_procedure(conn, session['procedures'])
+        df_Masters_for_procedure = get_Masters_for_procedure(conn, session['procedures'])
     else:
         df_Masters_for_procedure = pd.DataFrame
 
@@ -59,7 +59,7 @@ def datepage():
         startDate = convert(startDate)
         endDate = convert(endDate)
         for elem in master_list:
-            date_list_df = Find_time_date(conn, startDate, endDate, elem)
+            date_list_df = get_Find_time_date(conn, startDate, endDate, elem)
             date_list_list.append(date_list_df)
 
     if date_list_list:
