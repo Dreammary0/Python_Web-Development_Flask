@@ -66,3 +66,37 @@ input[type="submit"] {
     cursor: pointer;
 
 }
+
+label:hover {
+    background: #eee;
+    cursor: pointer;
+}
+
+summary:hover{
+    cursor: pointer;
+}
+
+
+.button {
+    border-radius: 7px;
+    transition: .2s linear;
+}
+
+.button_1 {
+    padding: 5px;
+    border-radius: 4px;
+    font-size: 12pt;
+    border-radius: 9px;
+    text-align: center;
+    margin-top: 10px;
+    cursor: pointer;
+}
+.button_1:hover {
+    background: rgba(163, 205, 90, 0.14);
+
+}
+
+.button_1:active {
+    background: rgba(163, 205, 90);
+}
+
